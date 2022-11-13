@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="card">
+        <div class="card-title">
+          <mat-icon>timer</mat-icon>
+        </div>
+        <div class="card-content">
+          <div class="card-content-row">
+            <table class="clock">
+              <tr class="countdown">
+                <td>{{ formatClockNumberToText(clock.hours) }}</td>
+                <td class="separator">:</td>
+                <td>{{ formatClockNumberToText(clock.minutes) }}</td>
+                <td class="separator">:</td>
+                <td>{{ formatClockNumberToText(clock.seconds) }}</td>
+                <td class="separator">:</td>
+                <td class="sm">{{formatClockNumberToText(clock.hundredthsOfSeconds)}}</td>
+              </tr>
+              <tr class="label">
+                <td>h</td>
+                <td></td>
+                <td>m</td>
+                <td></td>
+                <td>s</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card-content-row">
+            <table class="actions">
+              <tr>
+                <td>
+                  <button mat-icon-button color="primary" (click)="startCountdown()"
+                    [disabled]="clock.isRunning">
+                    <mat-icon>play_arrow</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button mat-icon-button color="primary" (click)="pauseCountdown()"
+                    [disabled]="!clock.isRunning || clock.isStopped">
+                    <mat-icon>pause</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button mat-icon-button color="warn" (click)="stopCountdown()" 
+                  [disabled]="!clock.isRunning || clock.isStopped">
+                    <mat-icon>stop</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button mat-icon-button color="warn" (click)="resetCountdown()">
+                    <mat-icon>replay</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card-content-row">
+
+            <form class="edit-countdown-form">
+              <div class="card-title">
+                <mat-icon>edit_calendar</mat-icon>
+              </div>
+              <table cellspacing="5">
+                <tr>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Hours</mat-label>
+                      <mat-select [(ngModel)]="selectedHour" name="hour">
+                        <mat-option *ngFor="let hour of hours" [value]="hour">
+                          {{formatClockNumberToText(hour)}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Minutes</mat-label>
+                      <mat-select [(ngModel)]="selectedMinute" name="minute">
+                        <mat-option *ngFor="let minute of minutes" [value]="minute">
+                          {{formatClockNumberToText(minute)}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Seconds</mat-label>
+                      <mat-select [(ngModel)]="selectedSecond" name="second">
+                        <mat-option *ngFor="let second of seconds" [value]="second">
+                          {{formatClockNumberToText(second)}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+
+          <div class="card-content-row">
+            <table class="actions">
+              <tr>
+                <td>
+                  <button mat-icon-button color="primary" (click)="addTimeToClock()" 
+                  [disabled]="clock.isStopped">
+                    <mat-icon>more_time</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  <button mat-icon-button color="warn" (click)="replaceClockTime()">
+                    <mat-icon>update</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

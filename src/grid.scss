@@ -1,0 +1,45 @@
+
+nav {
+    grid-area: nav;
+    position: sticky;
+    z-index: 1020;
+    top: 0;
+    align-self: start;
+    height: 50px;
+}
+
+.sidenav {
+    box-sizing: border-box;
+    grid-area: sidenav;
+    display: none;
+    position: sticky;
+    z-index: 1030;
+    top: 50px;
+    align-self: start;
+    height: calc(100vh - 50px);
+}
+
+.content{
+    grid-area: content;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+    .card, .title{
+        flex-grow: 1;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+footer {
+    box-sizing: border-box;
+    grid-area: footer;
+    padding-top: var(--main-padding);
+    height: 50px;
+}

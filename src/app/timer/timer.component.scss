@@ -1,0 +1,80 @@
+.card {
+  display: grid;
+
+  .card-title {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-bottom: 20px;
+    font-weight: 400;
+    font-size: 24px;
+
+    mat-icon{
+      color: rgba(8, 101, 207, 0.3);
+      font-size: 40px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .card-content {
+    margin: auto;
+    box-sizing: border-box;
+    display: grid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .card-content-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0px;
+    }
+
+    .clock {
+      padding-left: 39px;
+      font-size: 50px;
+      .countdown {
+        .separator {
+          font-weight: 100;
+          font-size: 30px;
+          vertical-align: middle;
+        }
+
+        .sm {
+          font-weight: 100;
+          font-size: 25px;
+        }
+      }
+      .label {
+        width: 100%;
+        font-weight: 100;
+        font-size: 20px;
+
+        span {
+          display: inline-block;
+        }
+
+        .text {
+          width: 56px;
+        }
+
+        .spacer {
+          width: 20px;
+        }
+      }
+    }
+
+    .edit-countdown-form{
+      padding-top: 40px;
+      font-size: 16px;
+
+      mat-form-field{
+        width: 120px;
+      }
+    }
+  }
+}

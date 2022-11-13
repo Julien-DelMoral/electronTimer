@@ -1,0 +1,17 @@
+{
+  "name": "electron-timer",
+  "version": "1.0.0",
+  "description": "simple timer ( angular + electron )",
+  "author": {
+    "name": "Julien Del Moral",
+    "email": "julien.delmoral@protonmail.com"
+  },
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
+  }
+}

@@ -1,0 +1,88 @@
+@import "variables";
+@import "grid";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+*{
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+.container {
+  font-weight: 800;
+  font-size: 12px;
+  color: #004d40;
+  text-align: center;
+}
+
+nav {
+  background: var(--nav-background);
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #234361;
+  font-size: 20px;
+}
+
+main {
+  background: var(--main-background);
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+.sidenav {
+  background: var(--sidenav-background);
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #234361;
+  font-size: 20px;
+}
+
+footer {
+  background: var(--footer-background);
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #234361;
+  font-size: 20px;
+}
+
+.card{
+  padding: 20px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #234361;
+}
+
+
+.title{
+
+    font-weight: 400;
+    padding: 20px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: #234361;
+}
+
+
+.h400 .card{
+  min-height: 400px;
+}
+
+.display-block{
+  display: block;
+}
