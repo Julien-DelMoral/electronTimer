@@ -5,55 +5,24 @@
 *{
   box-sizing: border-box;
 }
+
+html{
+  height: 100%;
+}
 body {
   font-family: "Inter", sans-serif;
   margin: 0;
+  overflow-y: hidden;
+  border: 1px solid #DCDCDC;
+  height: 100%;
 }
 
 .container {
   font-weight: 800;
   font-size: 12px;
-  color: #004d40;
   text-align: center;
-}
-
-nav {
-  background: var(--nav-background);
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #234361;
-  font-size: 20px;
-}
-
-main {
-  background: var(--main-background);
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
-
-.sidenav {
-  background: var(--sidenav-background);
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #234361;
-  font-size: 20px;
-}
-
-footer {
-  background: var(--footer-background);
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #234361;
-  font-size: 20px;
+  height: calc(100% - 32px);
+  margin-top: 32px;
 }
 
 .card{
@@ -65,9 +34,7 @@ footer {
   color: #234361;
 }
 
-
 .title{
-
     font-weight: 400;
     padding: 20px;
     min-height: 100px;
@@ -76,13 +43,4 @@ footer {
     justify-content: center;
     font-size: 50px;
     color: #234361;
-}
-
-
-.h400 .card{
-  min-height: 400px;
-}
-
-.display-block{
-  display: block;
 }

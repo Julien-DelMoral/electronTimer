@@ -1,6 +1,7 @@
 .card {
   display: grid;
 
+
   .card-title {
 
     display: flex;
@@ -75,6 +76,20 @@
       mat-form-field{
         width: 120px;
       }
+
+
+    }
+
+    .form-actions{
+      button{
+        width: 110px;
+        margin: 2px;
+      }
     }
   }
+}
+
+.empty-option {
+  font-style: italic ;
+  color: rgb(150, 150, 150);
 }

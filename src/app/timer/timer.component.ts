@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ElectronService } from '../core/services';
-
 import { Clock } from '../shared/models/clock';
+import { ClockService } from '../shared/services/clock.service';
 
 
 @Component({
@@ -13,25 +12,32 @@ import { Clock } from '../shared/models/clock';
 export class TimerComponent implements OnInit {
   /*Clock*/
   clock: Clock;
-  
+
   /*Form*/
-  selectedHour = 0;
-  selectedMinute = 0;
-  selectedSecond = 0;
-  hours: number[] = Array(25).fill(1).map((x, i) => i);
-  minutes: number[] = Array(61).fill(1).map((x, i) => i);
-  seconds: number[] = Array(61).fill(1).map((x, i) => i);
+  selectedHour: number;
+  selectedMinute: number;
+  selectedSecond: number;
+  hours: number[] = Array(24).fill(1).map((x, i) => i + 1);
+  minutes: number[] = Array(60).fill(1).map((x, i) => i + 1);
+  seconds: number[] = Array(60).fill(1).map((x, i) => i + 1);
 
-
-  constructor(private electronService: ElectronService) {
+  constructor(private electronService: ElectronService, private clockService: ClockService) {
   }
-
 
   ngOnInit() {
-    this.clock = new Clock(0,30,1);
+    this.clock = this.clockService.clock;
+    this.clock.clockEventBus.subscribe((event)=>{
+      if(event === 'clockReachedZero'){
+        if (this.electronService) {
+          this.electronService.ipcRenderer.send('notify', {
+              title: 'Time\'s up !', message: 'You should know what to do next ;)'
+          });
+      }
+      }
+    });
   }
 
-  
+
   startCountdown() {
     this.clock.startTimer();
   }
@@ -41,7 +47,7 @@ export class TimerComponent implements OnInit {
   }
 
   stopCountdown() {
-   this.clock.stopTimer();
+    this.clock.stopTimer();
   }
 
   pauseCountdown() {
@@ -49,17 +55,28 @@ export class TimerComponent implements OnInit {
   }
 
   addTimeToClock() {
-    const selectedHourInMilliseconds = this.selectedHour * 60 * 60 * 1000;
-    const selectedMinuteInMilliseconds = this.selectedMinute * 60 * 1000;
-    const selectedSecondInMilliseconds = this.selectedSecond * 1000;
-    this.clock.addTimeToTimer(selectedHourInMilliseconds + selectedMinuteInMilliseconds + selectedSecondInMilliseconds)
+    const selectedHourInMilliseconds = this.selectedHour ? this.selectedHour * 60 * 60 * 1000 : 0;
+    const selectedMinuteInMilliseconds = this.selectedMinute ? this.selectedMinute * 60 * 1000 : 0;
+    const selectedSecondInMilliseconds = this.selectedSecond ? this.selectedSecond * 1000 : 0;
+    this.clock.addTimeToTimer(selectedHourInMilliseconds + selectedMinuteInMilliseconds + selectedSecondInMilliseconds);
   }
 
   replaceClockTime() {
-    this.clock.resetTimer(this.selectedSecond, this.selectedMinute, this.selectedHour)
+    this.clock.resetTimer(
+      this.selectedSecond ? this.selectedSecond : 0,
+      this.selectedMinute ? this.selectedMinute : 0,
+      this.selectedHour ? this.selectedHour : 0
+    );
   }
 
-  formatClockNumberToText(n:number): string{
+  formatClockNumberToText(n: number): string {
     return String(n).padStart(2, '0');
- }
+  }
+
+  isFormEmpty(): boolean {
+    if (!this.selectedHour && !this.selectedMinute && !this.selectedSecond) {
+      return true;
+    }
+    return false;
+  }
 }

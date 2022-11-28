@@ -1,5 +1,7 @@
 {
   "asar": true,
+  "productName": "ElectronTimer",
+  "appId": "electron-timer.app",
   "directories": {
     "output": "release/"
   },

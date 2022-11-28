@@ -1,0 +1,67 @@
+<header id="titlebar">
+  <div id="drag-region">
+
+    <div id="window-title">
+      <img src="assets/timer.png">
+      <div class=" menu">
+        <button [matMenuTriggerFor]="edit">Edit</button>
+        <mat-menu #edit="matMenu" xPosition="after">
+          <button mat-menu-item [disabled]="clock.isRunning || clock.isTimerAtZero">
+            <div class="action">Play</div>
+            <div class="shortcut">Ctrl+P</div>
+          </button>
+          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped">
+            <div class="action">Pause</div>
+            <div class="shortcut">Ctrl+P</div>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped">
+            <div class="action">Stop</div>
+            <div class="shortcut">Ctrl+S</div>
+          </button>
+          <button mat-menu-item>
+            <div class="action">Reset</div>
+            <div class="shortcut">Ctrl+Z</div>
+          </button>
+        </mat-menu>
+        <button [matMenuTriggerFor]="settings">Settings</button>
+        <mat-menu #settings="matMenu" xPosition="after">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  This is the expansion title
+                </mat-panel-title>
+                <mat-panel-description>
+                  This is a summary of the content
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Self aware panel
+                </mat-panel-title>
+                <mat-panel-description>
+                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div id="window-controls">
+      <div class="button" id="min-button" (click)="minimizeMainWindow()" tabindex="0">
+        -----
+      </div>
+      <div class="button" id="close-button" (click)="closeMainWindow()">
+        <mat-icon draggable="false">clear</mat-icon>
+      </div>
+    </div>
+  </div>
+</header>

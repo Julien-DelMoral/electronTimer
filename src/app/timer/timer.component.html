@@ -34,7 +34,7 @@
               <tr>
                 <td>
                   <button mat-icon-button color="primary" (click)="startCountdown()"
-                    [disabled]="clock.isRunning">
+                    [disabled]="clock.isRunning || clock.isTimerAtZero">
                     <mat-icon>play_arrow</mat-icon>
                   </button>
                 </td>
@@ -45,7 +45,7 @@
                   </button>
                 </td>
                 <td>
-                  <button mat-icon-button color="warn" (click)="stopCountdown()" 
+                  <button mat-icon-button color="warn" (click)="stopCountdown()"
                   [disabled]="!clock.isRunning || clock.isStopped">
                     <mat-icon>stop</mat-icon>
                   </button>
@@ -71,6 +71,7 @@
                     <mat-form-field appearance="fill">
                       <mat-label>Hours</mat-label>
                       <mat-select [(ngModel)]="selectedHour" name="hour">
+                        <mat-option class="empty-option">--</mat-option>
                         <mat-option *ngFor="let hour of hours" [value]="hour">
                           {{formatClockNumberToText(hour)}}
                         </mat-option>
@@ -81,6 +82,7 @@
                     <mat-form-field appearance="fill">
                       <mat-label>Minutes</mat-label>
                       <mat-select [(ngModel)]="selectedMinute" name="minute">
+                        <mat-option class="empty-option">--</mat-option>
                         <mat-option *ngFor="let minute of minutes" [value]="minute">
                           {{formatClockNumberToText(minute)}}
                         </mat-option>
@@ -91,6 +93,7 @@
                     <mat-form-field appearance="fill">
                       <mat-label>Seconds</mat-label>
                       <mat-select [(ngModel)]="selectedSecond" name="second">
+                        <mat-option class="empty-option">--</mat-option>
                         <mat-option *ngFor="let second of seconds" [value]="second">
                           {{formatClockNumberToText(second)}}
                         </mat-option>
@@ -103,17 +106,18 @@
           </div>
 
           <div class="card-content-row">
-            <table class="actions">
+            <table class="actions form-actions">
               <tr>
                 <td>
-                  <button mat-icon-button color="primary" (click)="addTimeToClock()" 
-                  [disabled]="clock.isStopped">
-                    <mat-icon>more_time</mat-icon>
+                  <button mat-raised-button color="primary" (click)="addTimeToClock()"
+                  [disabled]="isFormEmpty()">
+                    <mat-icon>more_time</mat-icon> Add
                   </button>
                 </td>
                 <td>
-                  <button mat-icon-button color="warn" (click)="replaceClockTime()">
-                    <mat-icon>update</mat-icon>
+                  <button mat-raised-button color="warn" (click)="replaceClockTime()"
+                  [disabled]="isFormEmpty()">
+                    <mat-icon>update</mat-icon> Replace
                   </button>
                 </td>
               </tr>

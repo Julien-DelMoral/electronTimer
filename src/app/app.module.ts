@@ -10,15 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TimerComponent } from './timer/timer.component';
 
 // Services imports
-
+import { ElectronService } from './core/services';
 
 // Modules imports
 import { AppMaterialModule } from './material/material.module';
+import { TitlebarComponent } from './titlebar/titlebar.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent
+    TimerComponent,
+    TitlebarComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { AppMaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     AppMaterialModule,
   ],
-  providers: [],
+  providers: [ElectronService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

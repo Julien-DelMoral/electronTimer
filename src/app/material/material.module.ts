@@ -20,6 +20,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSidenavModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class AppMaterialModule {}
