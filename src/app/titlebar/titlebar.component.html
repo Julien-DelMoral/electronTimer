@@ -6,20 +6,20 @@
       <div class=" menu">
         <button [matMenuTriggerFor]="edit">Edit</button>
         <mat-menu #edit="matMenu" xPosition="after">
-          <button mat-menu-item [disabled]="clock.isRunning || clock.isTimerAtZero">
+          <button mat-menu-item [disabled]="clock.isRunning || clock.isTimerAtZero" (click)="startCountdown()">
             <div class="action">Play</div>
             <div class="shortcut">Ctrl+P</div>
           </button>
-          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped">
+          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped" (click)="pauseCountdown()">
             <div class="action">Pause</div>
             <div class="shortcut">Ctrl+P</div>
           </button>
           <mat-divider></mat-divider>
-          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped">
+          <button mat-menu-item [disabled]="!clock.isRunning || clock.isStopped" (click)="stopCountdown()">
             <div class="action">Stop</div>
             <div class="shortcut">Ctrl+S</div>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="resetCountdown()">
             <div class="action">Reset</div>
             <div class="shortcut">Ctrl+Z</div>
           </button>

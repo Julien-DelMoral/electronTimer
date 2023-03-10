@@ -17,6 +17,22 @@ export class TitlebarComponent implements OnInit {
     this.clock = this.clockService.clock;
   }
 
+  startCountdown() {
+    this.clock.startTimer();
+  }
+
+  resetCountdown() {
+    this.clock.resetTimer();
+  }
+
+  stopCountdown() {
+    this.clock.stopTimer();
+  }
+
+  pauseCountdown() {
+    this.clock.pauseTimer();
+  }
+
   closeMainWindow() {
     if (this.electronService.isElectron) {
       this.electronService.ipcRenderer.send('closeMainWindow');

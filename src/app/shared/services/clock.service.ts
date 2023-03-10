@@ -8,7 +8,7 @@ export class ClockService {
 
   clock: Clock;
   constructor() {
-    this.clock = new Clock(0,30,1);
+    this.clock = new Clock(0,0,1);
   }
 
 }

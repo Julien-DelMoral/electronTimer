@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { ElectronService } from '../core/services';
 import { Clock } from '../shared/models/clock';
 import { ClockService } from '../shared/services/clock.service';
+import { HotkeysService } from '../shared/services/hotkeys.service';
 
 
 @Component({
@@ -21,19 +23,36 @@ export class TimerComponent implements OnInit {
   minutes: number[] = Array(60).fill(1).map((x, i) => i + 1);
   seconds: number[] = Array(60).fill(1).map((x, i) => i + 1);
 
-  constructor(private electronService: ElectronService, private clockService: ClockService) {
+  constructor(private electronService: ElectronService, private clockService: ClockService, private hotKeysService: HotkeysService) {
   }
 
   ngOnInit() {
     this.clock = this.clockService.clock;
-    this.clock.clockEventBus.subscribe((event)=>{
-      if(event === 'clockReachedZero'){
+    this.clock.clockEventBus.subscribe((event) => {
+      if (event === 'clockReachedZero') {
         if (this.electronService) {
           this.electronService.ipcRenderer.send('notify', {
-              title: 'Time\'s up !', message: 'You should know what to do next ;)'
+            title: 'Time\'s up !', message: 'You should know what to do next ;)'
           });
+        }
       }
+    });
+
+    this.hotKeysService.addShortcut({keys: 'control.p'}).pipe().subscribe(()=>{
+      if(this.clock.isRunning){
+        this.pauseCountdown();
       }
+      else{
+        this.startCountdown();
+      }
+    });
+
+    this.hotKeysService.addShortcut({keys: 'control.s'}).pipe().subscribe(()=>{
+        this.stopCountdown();
+    });
+
+    this.hotKeysService.addShortcut({keys: 'control.z'}).pipe().subscribe(()=>{
+      this.resetCountdown();
     });
   }
 

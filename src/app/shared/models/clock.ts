@@ -61,6 +61,9 @@ export class Clock {
   }
 
   public startTimer() {
+    if(this._isRunning || this.isTimerAtZero ){
+      return;
+    }
     this._isRunning = true;
     this._isStopped = false;
     this._timerEndingDate = this.msToTimerEndingDate(this.getClockValuesInMilliSeconds());
@@ -80,6 +83,9 @@ export class Clock {
   }
 
   public stopTimer() {
+    if(!this._isRunning){
+      return;
+    }
     clearInterval(this._timerInterval);
     this.setClockToZero();
     this._timerRemainingTimeInMillisecond = 0;
